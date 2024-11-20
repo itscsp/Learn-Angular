@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-3">
+    <p>{{ firstname }}</p>
+  </div>
+  <div class="col-3">
+    <p>{{ angularVersion }}</p>
+  </div>
+  <div class="col-3">
+    <p>{{ angularVersion }}</p>
+  </div>
+  <div class="col-3">
+    <p>{{ selectedState }}</p>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <input type="text" [value]="firstname" class="form-control">
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="firstname">
+    </div>
+    <div class="col-3">
+        <input [type]="inputType" name="" id="">
+    </div>
+    <div class="col-3">
+        <select [(ngModel)]="selectedState">
+            <option value="MH" selected>MH</option>
+            <option value="MP">MP</option>
+            <option value="Goa">Goa</option>
+        </select>
+    </div>
+</div>
