@@ -21,5 +21,14 @@ export class RolesComponent {
   inputType: string = "checkbox";
   selectedState: string = "";
 
+  //function
+
+  showWelcomeAlert() {
+    alert("Welcome to My Angular Learning.")
+  }
+
+  showMessage(message: string){
+    alert(message)
+  }
 
 }

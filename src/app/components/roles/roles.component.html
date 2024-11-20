@@ -31,3 +31,19 @@
         </select>
     </div>
 </div>
+
+<div class="row">
+  <div class="col-3">
+    <button class="btn btn-success"
+    (click)="showWelcomeAlert()"
+    >
+      Show Alert
+    </button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-success" (click)="showMessage('Current Angular Version: ' + angularVersion)">
+      Show Angular Version
+    </button>
+  </div>
+  
+</div>
