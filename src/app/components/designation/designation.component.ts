@@ -6,18 +6,24 @@ import { APIResponseModel, IDesignation } from '../../model/interface/role';
   selector: 'app-designation',
   imports: [],
   templateUrl: './designation.component.html',
-  styleUrl: './designation.component.css'
+  styleUrl: './designation.component.css',
 })
 export class DesignationComponent implements OnInit {
-
-  designationList: IDesignation[] = []
-   masterService = inject(MasterService)
+  designationList: IDesignation[] = [];
+  isLoader: boolean = true;
+  masterService = inject(MasterService);
 
   ngOnInit(): void {
-    this.masterService.getDesignation().subscribe((result:APIResponseModel) => {
-      this.designationList = result.data
-    }, error => {
-      alert("API error / Network error")
-    });
+    this.masterService.getDesignation().subscribe(
+      (result: APIResponseModel) => {
+        this.designationList = result.data;
+        this.isLoader = false;
+      },
+      (error) => {
+        alert('API error / Network error');
+        this.isLoader = false;
+
+      }
+    );
   }
 }
