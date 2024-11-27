@@ -1,0 +1,7 @@
+{
+    "/**": {
+    "target": "https://freeapi.miniprojectideas.com",
+    "secure": true,
+    "changeOrigin": false
+    }
+}
