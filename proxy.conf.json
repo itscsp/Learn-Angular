@@ -1,7 +1,9 @@
 {
-    "/**": {
-    "target": "https://freeapi.miniprojectideas.com",
-    "secure": true,
-    "changeOrigin": false
+    "/api/*": {
+      "target": "https://freeapi.miniprojectideas.com",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
     }
-}
+  }
+  
