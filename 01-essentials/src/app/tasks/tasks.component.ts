@@ -14,7 +14,7 @@ export class TasksComponent {
     @Input({required:true}) id!:string;
 
     get userName(){
-        let user = DUMMY_USERS.filter((item) => item.id == this.id)
+        let user = DUMMY_USERS.filter((item) => item.id === this.id)
         return user[0].name;
     }
 }

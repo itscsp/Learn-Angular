@@ -13,10 +13,11 @@ import { TasksComponent } from "./tasks/tasks.component";
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  selectedUserId = DUMMY_USERS[0].id;
+  selectedUserId?: string ;
 
   onSelectUser(id:string){
     this.selectedUserId = id
     console.log("Selected User with ID:", id)
   }
 }
+  
