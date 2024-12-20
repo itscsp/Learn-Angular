@@ -1,11 +1,12 @@
 import { Component, Input } from "@angular/core";
 import { DUMMY_USERS } from "../dummy-users";
 import { TaskComponent } from "./task/task.component";
+import { NewTaskComponent } from "./new-task/new-task.component";
 
 @Component({
     selector: 'app-tasks',
     standalone:true,
-    imports:[TaskComponent],
+    imports: [TaskComponent, NewTaskComponent],
     templateUrl:'./tasks.component.html',
     styleUrl:'./tasks.component.css'
 })
@@ -13,9 +14,15 @@ import { TaskComponent } from "./task/task.component";
 
 export class TasksComponent {
     @Input({required:true}) id!:string;
+    isAddingTask = false
 
     get userName(){
         let user = DUMMY_USERS.filter((item) => item.id === this.id)
         return user[0].name;
+    }
+
+    onStartAddTask() {
+        console.log("Click add task button")
+        this.isAddingTask = true
     }
 }
