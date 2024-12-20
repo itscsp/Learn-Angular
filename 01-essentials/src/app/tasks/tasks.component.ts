@@ -22,10 +22,7 @@ export class TasksComponent {
         return user[0].name;
     }
 
-    onStartAddTask() {
-        console.log("Click add task button")
-        this.isAddingTask = true
-    }
+   
     tasks = [
         {
             id: 't1',
@@ -59,6 +56,15 @@ export class TasksComponent {
     onCompleteTask(id:string) {
         //...
         this.tasks = this.tasks.filter((task) => task.id !== id )
+    }
+
+    onStartAddTask() {
+      console.log("Click add task button")
+      this.isAddingTask = true
+    }
+
+    onCancelAddTask() {
+      this.isAddingTask = false
     }
     
 }
