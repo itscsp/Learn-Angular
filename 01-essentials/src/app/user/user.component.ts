@@ -5,8 +5,6 @@ import { CardComponent } from "../shared/card/card.component";
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length )
 
-
-
 @Component({
   selector: 'app-user',
   standalone: true,
