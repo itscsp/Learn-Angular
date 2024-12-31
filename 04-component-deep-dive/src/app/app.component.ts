@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
-import { ServerComponent } from './server/server.component';
-import { SupportComponent } from './support/support.component';
-import { TrafficComponent } from './traffic/traffic.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, ServerComponent, SupportComponent, TrafficComponent],
+  imports: [HeaderComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
