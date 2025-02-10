@@ -12,6 +12,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-ticket.component.css'
 })
 export class NewTicketComponent implements AfterViewInit {
+  enteredTitle = ''
+  enteredText = ''
+
+
   // @ViewChild('form') form?: ElementRef<HTMLFormElement>;
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
   // @Output() add = new EventEmitter();
@@ -21,10 +25,11 @@ export class NewTicketComponent implements AfterViewInit {
     console.log('After view init')
   }
 
-  onSubmit(titleInput:string, textInput:string) {
-    console.dir(titleInput, textInput);
-    this.add.emit({title: titleInput, text: textInput})
-    this.form().nativeElement.reset();
+  onSubmit() {
+
+    this.add.emit({title: this.enteredTitle, text: this.enteredText});
+    this.enteredTitle = ''
+    this.enteredText = ''
   }
 
 }
