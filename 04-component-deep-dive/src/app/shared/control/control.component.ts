@@ -1,4 +1,4 @@
-import { Component, contentChild, ContentChild, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
+import { afterNextRender, afterRender, Component, contentChild, ContentChild, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -22,6 +22,16 @@ export class ControlComponent {
   private el = inject(ElementRef);
   // @ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
   private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+
+  constructor() {
+    afterRender(() => {
+      console.log('After Render')
+    })
+
+    afterNextRender(() => {
+      console.log('After Next Render')
+    })
+  }
 
   onClick() {
     this.el.nativeElement.focus();
