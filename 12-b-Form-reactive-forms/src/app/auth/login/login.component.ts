@@ -1,7 +1,7 @@
 
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { of } from 'rxjs';
+import { debounce, debounceTime, of } from 'rxjs';
 
 //Custom Validation Function
 function mustContainQuestionMark(control: AbstractControl) {
@@ -20,6 +20,13 @@ function emailIsUnique(control: AbstractControl) {
   return of({notUnique: true});
 }
 
+let intialEmailValue = ''
+const savedForm = window.localStorage.getItem('saved-login-form');
+if(savedForm){
+  const loadedForm = JSON.parse(savedForm);
+  intialEmailValue = loadedForm.email
+}
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -27,9 +34,11 @@ function emailIsUnique(control: AbstractControl) {
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
+
   form = new FormGroup({
-    email: new FormControl('', {
+    email: new FormControl(intialEmailValue, {
       validators: [Validators.email, Validators.required],
       asyncValidators: [emailIsUnique]
     }),
@@ -37,6 +46,35 @@ export class LoginComponent {
       validators: [Validators.required, Validators.minLength(6),mustContainQuestionMark ]
     })
   })
+
+  ngOnInit(): void {
+    // const savedForm = window.localStorage.getItem('saved-login-form');
+
+    // if(savedForm){
+    //   const loadedForm = JSON.parse(savedForm);
+    //   // this.form.controls.email.setValue(loadedForm.email)
+    //   this.form.patchValue({
+    //     email: loadedForm.email
+    //   })
+    // }
+
+    //Alternative to above logic
+    // Check above @componet code.
+
+
+    const subscription = this.form.valueChanges
+    .pipe(debounceTime(500))
+    .subscribe({
+      next: value => {
+        window.localStorage.setItem(
+          'saved-login-form', 
+          JSON.stringify({email: value.email})
+        )
+      }
+    });
+
+    this.destroyRef.onDestroy(() => subscription.unsubscribe())
+  }
 
   // Validation
   get emailIsInvalid() {
